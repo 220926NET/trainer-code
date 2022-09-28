@@ -40,8 +40,10 @@ MVP: Minimum Viable Product
 */
 
 Random rnd = new Random();
-int num = rnd.Next();
-Console.WriteLine("the answer is " + num);
+int num = rnd.Next(100);
+
+Console.WriteLine("Welcome to guessing game");
+Console.WriteLine("Enter a guess: ");
 string guess = Console.ReadLine();
 int guessedNumber = int.Parse(guess);
 
@@ -51,5 +53,13 @@ if(num == guessedNumber)
 }
 else
 {
-    Console.WriteLine("You guessed incorrectly");
+    // Console.WriteLine("You guessed incorrectly, you are " + (num - guessedNumber) + " off");
+    if(num > guessedNumber)
+    {
+        Console.WriteLine("You guessed incorrectly, your guess is low");
+    }
+    else
+    {
+        Console.WriteLine("You guessed incorrectly, your guess is high");
+    }
 }
