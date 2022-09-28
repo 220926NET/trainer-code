@@ -30,6 +30,7 @@ User Stories
 - Users should be able to name themselves or remain anonymous
 - Users should be able to see their records from prior sessions
 - Users should be able to choose different topics
+- Users should be able to see their previous attempts
 */
 
 /*
@@ -39,27 +40,107 @@ MVP: Minimum Viable Product
 * It would be nice to know if the guess was correct or not
 */
 
+/*
+I want to implement a feature that tells the user if they are getting closer or further away from the answer
+- comparison between the correct number and the guess
+- comparison between the last guess to my current guess
+
+When a user guesses a number
+0. We should first compare if they have it right
+if not
+1. this is their first guess
+    1. I want to let them know if their guess is high or low
+2. this is not their first guess
+    0. Let them know if their guess is high or low
+    1. I'll take the previous guess, n, and compare if the distance from n to the answer, a, is greater than or less than or equal to the distance from the current guess, m, to a, the answer.
+        1. d_n < d_m : you're getting colder, aka, your new answer is further away from a than your previous answer
+        2. d_n > d_m : you're getting warmer
+        3. d_n == d_m : it's the same, you are not getting any closer
+*/
 Random rnd = new Random();
-int num = rnd.Next(100);
+int answer = rnd.Next(100);
 
 Console.WriteLine("Welcome to guessing game");
-Console.WriteLine("Enter a guess: ");
-string guess = Console.ReadLine();
-int guessedNumber = int.Parse(guess);
 
-if(num == guessedNumber)
+int? pastGuess = null;
+int currentGuess = int.MaxValue; 
+string guess;
+while(true) 
 {
-    Console.WriteLine("You guessed correctly!");
-}
-else
-{
-    // Console.WriteLine("You guessed incorrectly, you are " + (num - guessedNumber) + " off");
-    if(num > guessedNumber)
+    if(currentGuess != int.MaxValue)
+    {
+        pastGuess = currentGuess;
+    }
+
+    Console.WriteLine("Enter a guess: ");
+    guess = Console.ReadLine();
+    currentGuess = int.Parse(guess);
+    if(GuessingGame.HighOrLow(answer, currentGuess) == 0)
+    {
+        Console.WriteLine("You guessed correctly!");
+        break;
+    }
+    else if(GuessingGame.HighOrLow(answer, currentGuess) > 0)
     {
         Console.WriteLine("You guessed incorrectly, your guess is low");
     }
     else
     {
         Console.WriteLine("You guessed incorrectly, your guess is high");
+    }
+
+    Console.WriteLine("Past Guess: " + pastGuess + " Current guess: " + currentGuess);
+
+    if(pastGuess != null)
+    {
+        int pastDiff = Math.Abs((int) (answer - pastGuess));
+        int currDiff = Math.Abs((int) (answer - currentGuess));
+        if(pastDiff > currDiff)
+        {
+            Console.WriteLine("You are getting warmer");
+        }
+        else if(pastDiff < currDiff)
+        {
+            Console.WriteLine("You are getting colder");
+        }
+        else
+        {
+            Console.WriteLine("You are as warm as the last guess");
+        }
+    }
+}
+
+
+public static class GuessingGame
+{
+    /// <summary>
+    /// This method, takes in a number, and the answer, and returns a boolean, saying if it's the same or not
+    /// </summary>
+    /// <returns>Boolean value of whether the answer and the guess is the same</returns>
+    //This is method, method "modularizes" "bundles" "encapsulates" a certain repeatable behavior
+    // Method signature is the first line of the method definition
+    //and it comprises of the following: Access modifier, non-access modifier (optional), return type, method name, method parameters(input values)
+    public static bool IsCorrect(int answer, int? guess)
+    {
+        if(guess == null) return false;
+        bool isCorrect = answer == guess;
+        return isCorrect;
+    }
+
+    /// <summary>
+    /// This method computes whether the guess was higher or lower than the answer provided
+    /// It returns a number less than 0 if the guess is lower than the answer
+    /// a number greater than 0 if the guess is higher than the answer
+    /// returns 0 if the guess is the same as the answer
+    /// </summary>
+    /// <param name="answer">is integer value representing the correct answer of the game</param>
+    /// <param name="guess">is the integer value representing the user's guess</param>
+    public static int HighOrLow(int answer, int guess)
+    {
+        // if(answer > guess) return -1;
+        // else if(answer < guess) return 1;
+        // else return 0;
+
+        return guess - answer;
     }
 }
