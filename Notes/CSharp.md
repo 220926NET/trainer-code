@@ -39,3 +39,5 @@ It's comprised of the following
     - To create new console application
 - dotnet run (inside the project you plan on running)
     - to build and run your application
+- dotnet new gitignore 
+    - to generate .NET sdk's gitignore file
