@@ -20,8 +20,6 @@ It's comprised of the following
 - Development tools such as visual studio and vscode
 
 
-
-
 ## CSharp Moving Parts
 - Variables (declaration, assignment)
 - Statements, Expression
