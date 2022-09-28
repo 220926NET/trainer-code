@@ -37,3 +37,14 @@ It's comprised of the following
 - Variable Scopes
 - Console I/O
 - Parsing string to int
+
+## Git
+- Repository
+- Source code
+- staging
+- commit
+- workflow
+
+## Shell
+- Bash
+- Basic bash commands (cd, ls, cat, nano, rm, flags?)

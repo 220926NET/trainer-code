@@ -44,7 +44,7 @@ We put heavy emphasis on the delivery of the answers as much as the content itse
 - Lighting
 - Speaking Tone/Speed/Volume - make sure you're not speaking too softly, not mumbling, not speaking too fast
 - Rambling
-- Energy Level - This is interview/performance situation- bring  a bit more energy for the next 10 minutes.
+- Energy Level - This is interview/performance situation- bring a bit more energy for the next 10 minutes.
 - Eye Contact: Don't look around (as it can be interpreted as cheating)
 - Fidgeting: be aware of your nervous habits 
 
@@ -54,5 +54,5 @@ We put heavy emphasis on the delivery of the answers as much as the content itse
     - IE. "What are some class members?"
         - and you don't know what fields are, just... don't even mention fields are class members.
         - Lead them to the area that you're strong in
-- Second, Don't start the answer by "I'm not sure about this... but... " AND THEN give a good answer
+- Second, Don't start the answer by "I'm not sure about this... but..." AND THEN give a good answer
 - Third, believe it or not, taking 5 seconds before starting to answer doesn't feel like an eternity to the interviewer. If you need the time to put together a coherent answer, that the time. It's better to take the time in the beginning and come up with a polished answer rather than starting to speak and end up rambling.
