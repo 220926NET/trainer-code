@@ -1,0 +1,4 @@
+# .gitignore is a file that tells git to ignore (aka do not track those files/folders)
+
+bin
+obj
