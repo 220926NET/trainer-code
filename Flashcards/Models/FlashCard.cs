@@ -1,3 +1,5 @@
+namespace Models;
+
 public class FlashCard
 {
     public FlashCard() { }

@@ -21,6 +21,7 @@ Other Features:
 - Final score
 */
 
+using Models;
 
 List<FlashCard> allCards = new List<FlashCard> {
     new FlashCard {
