@@ -1,9 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using SampleClassLibrary;
+
+// See https://aka.ms/new-console-template for more information
 // This is our main entry point of the application
 //The computer go here first to look for instructions to execute
 
 Console.WriteLine("Hello, World!");
-
+Class1 cls = new Class1();
 Cat auryn = new Cat();
 Cat garfield = new Cat("orange");
 Cat stinker = new Cat("orange", "short");
