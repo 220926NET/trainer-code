@@ -39,5 +39,12 @@ It's comprised of the following
     - To create new console application
 - dotnet run (inside the project you plan on running)
     - to build and run your application
+    - implicitly builds before it runs
 - dotnet new gitignore 
     - to generate .NET sdk's gitignore file
+- dotnet new classlib -n "project-name"
+    - to generate a class library project
+- dotnet add reference path-to-the-folder-containing-csproj-file
+    - to add project dependency to another project
+- dotnet build
+    - just compiles the project
