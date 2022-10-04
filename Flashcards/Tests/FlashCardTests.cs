@@ -57,5 +57,4 @@ public class FlashCardTests
         //Act & Assert
         Assert.Throws<ArgumentException>(() => card.Question = input);
     }
-
 }
