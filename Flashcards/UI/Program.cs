@@ -79,11 +79,22 @@ static void ReviewCards(List<FlashCard> cards)
 
 static void AddCard(List<FlashCard> cards)
 {
-    Console.WriteLine("Enter the question:");
-    string question = Console.ReadLine();
-    Console.WriteLine("Enter answer: ");
-    string answer = Console.ReadLine();
+    while(true)
+    {
+        Console.WriteLine("Enter the question:");
+        string question = Console.ReadLine();
+        Console.WriteLine("Enter answer: ");
+        string answer = Console.ReadLine();
 
-    FlashCard cardToAdd = new FlashCard(question, answer);
-    cards.Add(cardToAdd);
+        try
+        {
+            FlashCard cardToAdd = new FlashCard(question, answer);
+            cards.Add(cardToAdd);
+            return;
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }
