@@ -4,7 +4,7 @@
 Unit testing is all about testing a small isolated piece of code.
 What we don't test in unit testing:
 - Testings things that the result depend on other things/aspects
-- ex: Other people's code (libraries), any thing that interacts with external resources (db access codes, user interfaces)
+- ex: Other people's code (libraries), anything that interacts with external resources (db access codes, user interfaces)
 
 What we do test:
 - Methods that will always act the same way given a same input (pure functions in js terms)
