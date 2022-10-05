@@ -6,7 +6,7 @@ MVP:
 - they should be able to see the question and the answer (flip the flashcard)
 
 Other Features:
-- Show the cards in random order
+- Show the cards in random order (done)
 - Let the users enter the definition (perhaps compare it to the answer on the flashcard)
 - Ask the user how many flashcards they want to review at this time
 - Get the current number of cards in the stack
@@ -39,7 +39,14 @@ while(true)
             AddCard();
             break;
         case "2":
-            ReviewCards(new FlashCardService().GetAllCards());
+            Console.WriteLine("Randomize? (y/N)");
+            string random = Console.ReadLine()!.Trim().ToLower();
+            Console.WriteLine("Show only the ones you didn't get correctly?");
+            string showOnlyIncorrect = Console.ReadLine()!.Trim().ToLower();
+            bool onlyIncorrect = showOnlyIncorrect == "y";
+            bool randomized = random == "y";
+            ReviewCards(new FlashCardService().GetAllCards(randomized, onlyIncorrect));
+
             break;
         case "x":
             Environment.Exit(0);
@@ -58,8 +65,10 @@ static void ReviewCards(List<FlashCard> cards)
         Console.WriteLine("Press Enter to reveal answer");
         Console.ReadLine();
         Console.WriteLine(card.Answer);
-        Console.WriteLine("Press Enter to continue");
-        Console.ReadLine();
+        Console.WriteLine("Did you get it right? [y/N]");
+        char input = Console.ReadLine()!.Trim().ToLower()[0];
+        if(input == 'y') new FlashCardService().ChangeCorrectness(true, card);
+        if(input == 'n') new FlashCardService().ChangeCorrectness(false, card);
     }
 }
 
@@ -69,7 +78,6 @@ static void AddCard()
     {
         Console.WriteLine("Enter the question:");
         string question = Console.ReadLine();
-        Console.WriteLine("Enter answer: ");
         string answer = Console.ReadLine();
 
         try

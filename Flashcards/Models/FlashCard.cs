@@ -10,6 +10,8 @@ public class FlashCard
         Answer = a;
     }
 
+    public int Id { get; set; }
+
     //properties
     private string _question = "";
     public string Question 
@@ -56,4 +58,6 @@ public class FlashCard
             }
         }
     }
+
+    public bool CorrectlyAnswered { get; set; } = false;
 }
