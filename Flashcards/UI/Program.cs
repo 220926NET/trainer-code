@@ -22,21 +22,7 @@ Other Features:
 */
 
 using Models;
-
-List<FlashCard> allCards = new List<FlashCard> {
-    new FlashCard {
-        Question = "What is OOP",
-        Answer = "Object Oriented Programming"
-    },
-    new FlashCard {
-        Question = "4 Pillars of OOP",
-        Answer = "Abstraction, Encapsulation, Polymorphism, Inheritance"
-    },
-    new FlashCard {
-        Question = "What is git",
-        Answer = "a version control system"
-    }
-};
+using Services;
 
 while(true)
 {
@@ -50,10 +36,10 @@ while(true)
     switch(menuChoice)
     {
         case "1":
-            AddCard(allCards);
+            AddCard();
             break;
         case "2":
-            ReviewCards(allCards);
+            ReviewCards(new FlashCardService().GetAllCards());
             break;
         case "x":
             Environment.Exit(0);
@@ -77,7 +63,7 @@ static void ReviewCards(List<FlashCard> cards)
     }
 }
 
-static void AddCard(List<FlashCard> cards)
+static void AddCard()
 {
     while(true)
     {
@@ -89,7 +75,7 @@ static void AddCard(List<FlashCard> cards)
         try
         {
             FlashCard cardToAdd = new FlashCard(question, answer);
-            cards.Add(cardToAdd);
+            new FlashCardService().AddNewCard(cardToAdd);
             return;
         }
         catch(ArgumentException ex)

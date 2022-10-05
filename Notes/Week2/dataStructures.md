@@ -77,7 +77,7 @@ O(n!)
 
 ## Dictionary<Tkey, TValue>
     - Key value pairs, ex. phonebook
-    - Keys are unique
+    - Keys are unique, values are not
     - You can also directly access the value of key. `dictionary[key_name]`
     - Lookup table
     - Given a string, give me the most frequent letters
