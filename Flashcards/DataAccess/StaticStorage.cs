@@ -29,7 +29,7 @@ public class StaticStorage : IFlashCardStorage
         new FlashCard {
             Id = 5,
             Question = "What is Encapsulation",
-            Answer = "1. Data Wrapping: Bundling related data and behavior together \n 2. Data Hiding: controlling access of data (getters/setters, access modifiers)"
+            Answer = "1. Data Wrapping: Bundling related data and behavior together \n2. Data Hiding: controlling access of data (getters/setters, access modifiers)"
         },
         new FlashCard {
             Id = 6,

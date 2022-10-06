@@ -66,9 +66,11 @@ static void ReviewCards(List<FlashCard> cards)
         Console.ReadLine();
         Console.WriteLine(card.Answer);
         Console.WriteLine("Did you get it right? [y/N]");
-        char input = Console.ReadLine()!.Trim().ToLower()[0];
-        if(input == 'y') new FlashCardService().ChangeCorrectness(true, card);
-        if(input == 'n') new FlashCardService().ChangeCorrectness(false, card);
+
+        string input = Console.ReadLine()!.Trim().ToLower();
+        
+        if(input.Length > 0 && input[0] == 'y') new FlashCardService().ChangeCorrectness(true, card);
+        else new FlashCardService().ChangeCorrectness(false, card);
     }
 }
 
