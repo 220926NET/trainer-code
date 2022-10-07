@@ -21,7 +21,6 @@ Other Features:
 - Final score
 */
 
-using Models;
 using Services;
 using DataAccess;
 
