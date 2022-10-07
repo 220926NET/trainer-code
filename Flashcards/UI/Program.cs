@@ -23,6 +23,7 @@ Other Features:
 
 using Models;
 using Services;
+using DataAccess;
 
 while(true)
 {
@@ -45,7 +46,7 @@ while(true)
             string showOnlyIncorrect = Console.ReadLine()!.Trim().ToLower();
             bool onlyIncorrect = showOnlyIncorrect == "y";
             bool randomized = random == "y";
-            ReviewCards(new FlashCardService().GetAllCards(randomized, onlyIncorrect));
+            ReviewCards(new FlashCardService(new FileStorage()).GetAllCards(randomized, onlyIncorrect));
 
             break;
         case "x":
@@ -60,6 +61,7 @@ while(true)
 
 static void ReviewCards(List<FlashCard> cards)
 {
+    Console.WriteLine(cards[0]);
     foreach(FlashCard card in cards) {
         Console.WriteLine(card.Question);
         Console.WriteLine("Press Enter to reveal answer");
@@ -69,8 +71,8 @@ static void ReviewCards(List<FlashCard> cards)
 
         string input = Console.ReadLine()!.Trim().ToLower();
         
-        if(input.Length > 0 && input[0] == 'y') new FlashCardService().ChangeCorrectness(true, card);
-        else new FlashCardService().ChangeCorrectness(false, card);
+        if(input.Length > 0 && input[0] == 'y') new FlashCardService(new FileStorage()).ChangeCorrectness(true, card);
+        else new FlashCardService(new FileStorage()).ChangeCorrectness(false, card);
     }
 }
 
@@ -80,12 +82,13 @@ static void AddCard()
     {
         Console.WriteLine("Enter the question:");
         string question = Console.ReadLine();
+        Console.WriteLine("Enter the Answer:");
         string answer = Console.ReadLine();
 
         try
         {
             FlashCard cardToAdd = new FlashCard(question, answer);
-            new FlashCardService().AddNewCard(cardToAdd);
+            new FlashCardService(new FileStorage()).AddNewCard(cardToAdd);
             return;
         }
         catch(ArgumentException ex)

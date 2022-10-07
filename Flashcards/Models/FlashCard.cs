@@ -60,4 +60,22 @@ public class FlashCard
     }
 
     public bool CorrectlyAnswered { get; set; } = false;
+
+    public override string ToString()
+    {
+        return $"{Question}: {Answer}";
+    }
+
+    //Use this method to implement your own value comparison logic for your reference type
+    public override bool Equals(Object? obj)
+    {
+        //If this object is not null and the type of the object we're comparing is the same as the type of this current object
+        if(obj != null && obj.GetType() == this.GetType())
+        {
+            //First, convert it to FlashCard type
+            FlashCard cardToCompare = (FlashCard) obj;
+            return cardToCompare.Id == this.Id && cardToCompare.Question == this.Question && cardToCompare.Answer == this.Answer;
+        }
+        return false;
+    }
 }

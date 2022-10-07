@@ -8,8 +8,4 @@ public interface IFlashCardStorage
 
     void CreateCard(FlashCard cardToCreate);
 
-    List<FlashCard> GetCardByQuestion(string queryStr);
-
-    List<FlashCard> GetCardByAnswer(string queryStr);
-
 }

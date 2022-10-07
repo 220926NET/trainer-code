@@ -67,7 +67,8 @@ class Program {
         string filePath = "./pokemon.json";
         if(!File.Exists(filePath))
         {   
-            File.Create(filePath);
+            FileStream fs = File.Create(filePath);
+            fs.Close();
         }
 
         //At this point, we know the json file at ./pokemon.json exists

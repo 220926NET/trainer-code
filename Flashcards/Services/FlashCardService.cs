@@ -2,11 +2,16 @@
 using DataAccess;
 
 namespace Services;
-public class FlashCardService
+public partial class FlashCardService
 {
+    private IFlashCardStorage _repo;
+    public FlashCardService(IFlashCardStorage repo)
+    {
+        _repo = repo;
+    }
     public void AddNewCard(FlashCard card)
     {
-        new StaticStorage().CreateCard(card);
+        _repo.CreateCard(card);
     }
 
     /// <summary>
@@ -17,14 +22,13 @@ public class FlashCardService
     /// <returns></returns>
     public List<FlashCard> GetAllCards(bool randomOrder, bool onlyIncorrect)
     {
-        List<FlashCard> allCards = new StaticStorage().GetAllCards();
+        List<FlashCard> allCards = _repo.GetAllCards();
         if(onlyIncorrect) {
             allCards = allCards.Where(card => card.CorrectlyAnswered == false).ToList();
         }
         if(randomOrder) {
             allCards = allCards.OrderBy(a => new Random().Next()).ToList();
         }
-
         return allCards;
     }
 
