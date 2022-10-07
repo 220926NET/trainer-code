@@ -2,12 +2,12 @@
 
 A collection of design principles that allows to create maintainable, scalable, extendable applications.
 
-- Single Responsibility
+- Room 1: Single Responsibility
 
-- Open/Close principle
+- Room 2: Open/Close principle
 
-- Liskov Substitution principle
+- Room 3: Liskov Substitution principle
 
-- Interface Segregation
+- Room 4: Interface Segregation
 
-- Dependency Inversion
+- Room 5: Dependency Inversion
