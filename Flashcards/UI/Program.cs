@@ -6,7 +6,7 @@ MVP:
 - they should be able to see the question and the answer (flip the flashcard)
 
 Other Features:
-- Show the cards in random order
+- Show the cards in random order (done)
 - Let the users enter the definition (perhaps compare it to the answer on the flashcard)
 - Ask the user how many flashcards they want to review at this time
 - Get the current number of cards in the stack
@@ -21,22 +21,8 @@ Other Features:
 - Final score
 */
 
-using Models;
-
-List<FlashCard> allCards = new List<FlashCard> {
-    new FlashCard {
-        Question = "What is OOP",
-        Answer = "Object Oriented Programming"
-    },
-    new FlashCard {
-        Question = "4 Pillars of OOP",
-        Answer = "Abstraction, Encapsulation, Polymorphism, Inheritance"
-    },
-    new FlashCard {
-        Question = "What is git",
-        Answer = "a version control system"
-    }
-};
+using Services;
+using DataAccess;
 
 while(true)
 {
@@ -50,10 +36,17 @@ while(true)
     switch(menuChoice)
     {
         case "1":
-            AddCard(allCards);
+            AddCard();
             break;
         case "2":
-            ReviewCards(allCards);
+            Console.WriteLine("Randomize? (y/N)");
+            string random = Console.ReadLine()!.Trim().ToLower();
+            Console.WriteLine("Show only the ones you didn't get correctly?");
+            string showOnlyIncorrect = Console.ReadLine()!.Trim().ToLower();
+            bool onlyIncorrect = showOnlyIncorrect == "y";
+            bool randomized = random == "y";
+            ReviewCards(new FlashCardService(new FileStorage()).GetAllCards(randomized, onlyIncorrect));
+
             break;
         case "x":
             Environment.Exit(0);
@@ -67,29 +60,34 @@ while(true)
 
 static void ReviewCards(List<FlashCard> cards)
 {
+    Console.WriteLine(cards[0]);
     foreach(FlashCard card in cards) {
         Console.WriteLine(card.Question);
         Console.WriteLine("Press Enter to reveal answer");
         Console.ReadLine();
         Console.WriteLine(card.Answer);
-        Console.WriteLine("Press Enter to continue");
-        Console.ReadLine();
+        Console.WriteLine("Did you get it right? [y/N]");
+
+        string input = Console.ReadLine()!.Trim().ToLower();
+        
+        if(input.Length > 0 && input[0] == 'y') new FlashCardService(new FileStorage()).ChangeCorrectness(true, card);
+        else new FlashCardService(new FileStorage()).ChangeCorrectness(false, card);
     }
 }
 
-static void AddCard(List<FlashCard> cards)
+static void AddCard()
 {
     while(true)
     {
         Console.WriteLine("Enter the question:");
         string question = Console.ReadLine();
-        Console.WriteLine("Enter answer: ");
+        Console.WriteLine("Enter the Answer:");
         string answer = Console.ReadLine();
 
         try
         {
             FlashCard cardToAdd = new FlashCard(question, answer);
-            cards.Add(cardToAdd);
+            new FlashCardService(new FileStorage()).AddNewCard(cardToAdd);
             return;
         }
         catch(ArgumentException ex)
