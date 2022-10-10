@@ -34,7 +34,7 @@ VALUES
 SELECT Id, Name, Nickname, Level, TrainerName, TrainerBadgeNumber, Types, Color FROM Pokemons;
 
 -- Normalization
--- Is a design guideline to reduce data inconsistency, and redunduncy.
+-- Is a design guideline to reduce data inconsistency and redunduncy.
 -- 1st Normal Form
 -- Unique Key, Atomic Values
     -- Any combination of columns that can uniquely id a row is called a key
@@ -101,7 +101,7 @@ SELECT * FROM TrainerPokemons;
 SELECT * FROM PokemonTrainer;
 SELECT * FROM Pokemon;
 
--- Many to Many Relationship
+-- One to Many Relationship
 CREATE TABLE Address (
     Id int IDENTITY PRIMARY KEY,
     -- Street to Address would be considered 1-1 relationship
@@ -117,3 +117,43 @@ CREATE TABLE Person (
     LastName NVARCHAR(100),
     PrimaryResidence int FOREIGN KEY REFERENCES Address(Id)
 );
+
+-- Pokemon to Colors
+-- M-M
+
+-- Pokemon to Moves
+-- M-M
+
+-- Pokemon to Types
+-- M-M
+-- Join Table
+Create Table Types (
+    Name NVARCHAR(100) PRIMARY KEY,
+    StrongAgainst NVARCHAR(100) FOREIGN KEY REFERENCES Types(Name),
+    WeakAgainst NVARCHAR(100) FOREIGN KEY REFERENCES Types(Name)
+)
+
+Create Table PokemonTypes (
+    Type NVARCHAR(100) FOREIGN Key References Types(Name),
+    PokeDexId int FOREIGN Key REFERENCES Pokemon(Id)
+);
+
+--CRUD commands 
+
+-- Create new rows in a table
+INSERT INTO Types (Name) VALUES ('Electric'), ('Ground'), ('Flying'), ('Water');
+
+-- Update existing rows in a table
+UPDATE Types SET StrongAgainst = 'Flying', WeakAgainst = 'Ground' WHERE Name = 'Electric';
+
+-- Read rows from tables
+SELECT * FROM Types 
+
+-- Delete rows from a table
+DELETE FROM Types WHERE Name = 'Water';
+
+CREATE TABLE StrongAgainst (
+    Id int Primary Key IDENTITY,
+    OriginType VARCHAR(100) FOREIGN KEY REFERENCES Types(Name),
+    StrongAgainstType VARCHAR(100) FOREIGN KEY REFERENCES Types(Name)
+)
