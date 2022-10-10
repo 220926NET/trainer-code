@@ -48,10 +48,10 @@ As long as the collection of data implements IEnummerable or IQueryable, you can
 - Method syntax
     ```csharp
         List<string> strList = new List<string> {"one", "two", "three", "four", "five"};
-		var filteredList = strList.Where(s => s.Length > 3);
+		var filteredList = strList.Where(s => s.Length > 3).Select(s => s + " string");
 
-		foreach(string s in filteredList)
+		foreach(string str in filteredList)
 		{
-			Console.WriteLine(s);
+			Console.WriteLine(str);
 		}
     ```
