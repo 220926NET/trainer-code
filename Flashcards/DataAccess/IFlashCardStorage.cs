@@ -14,7 +14,7 @@ public interface IFlashCardStorage
     /// inserts a new card in the db
     /// </summary>
     /// <param name="cardToCreate">a card object to persist to db, id is optional, but question and answer is not</param>
-    void CreateCard(FlashCard cardToCreate);
+    FlashCard CreateCard(FlashCard cardToCreate);
 
     /// <summary>
     /// Updates card with new question, answer, id, and wasCorrect

@@ -14,7 +14,7 @@ public class FlashCardRepo : IFlashCardStorage
     public FlashCardRepo(SqlConnection connection) {
         _connection = connection;
     }
-    public void CreateCard(FlashCard cardToCreate)
+    public FlashCard CreateCard(FlashCard cardToCreate)
     {
         /*
         Connecting and interacting with DB..
@@ -35,11 +35,12 @@ public class FlashCardRepo : IFlashCardStorage
             // SqlCommand cmd = new SqlCommand($"INSERT INTO FlashCards (Question, Answer) VALUES ('{cardToCreate.Question}', '{cardToCreate.Answer}')", connection);
 
             //preventing against sql injection
-            SqlCommand cmd = new SqlCommand("INSERT INTO FlashCards (Question, Answer) VALUES (@question, @answer)", _connection);
+            using SqlCommand cmd = new SqlCommand("INSERT INTO FlashCards (Question, Answer) OUTPUT INSERTED.Id VALUES (@question, @answer);", _connection);
             cmd.Parameters.AddWithValue("@question", cardToCreate.Question);
             cmd.Parameters.AddWithValue("@answer", cardToCreate.Answer);
 
-            cmd.ExecuteNonQuery();
+            int insertedId = (int) cmd.ExecuteScalar();
+            cardToCreate.Id = insertedId;
         }
         catch(SqlException)
         {
@@ -49,6 +50,8 @@ public class FlashCardRepo : IFlashCardStorage
         {
             _connection.Close();
         }
+
+        return cardToCreate;
 
     }
 
@@ -72,9 +75,9 @@ public class FlashCardRepo : IFlashCardStorage
         {
             _connection.Open();
 
-            SqlCommand command = new SqlCommand("SELECT * FROM FlashCards;", _connection);
+            using SqlCommand command = new SqlCommand("SELECT * FROM FlashCards;", _connection);
 
-            SqlDataReader reader = command.ExecuteReader();
+            using SqlDataReader reader = command.ExecuteReader();
             
             if(reader.HasRows)
             {
@@ -120,7 +123,7 @@ public class FlashCardRepo : IFlashCardStorage
             _connection.Open();
 
             //assemble the sql statement
-            SqlCommand cmd = new SqlCommand("UPDATE FlashCards SET WasCorrect = @isCorrect, Question = @q, Answer = @a WHERE Id = @id; SELECT * FROM FlashCards WHERE Id = @id", _connection);
+            using SqlCommand cmd = new SqlCommand("UPDATE FlashCards SET WasCorrect = @isCorrect, Question = @q, Answer = @a WHERE Id = @id; SELECT * FROM FlashCards WHERE Id = @id", _connection);
 
             //add all parameters, we can update either wasCorrect, Question, Answer of a card with this statement
             SqlParameter param = new SqlParameter("@isCorrect", cardToUpdate.CorrectlyAnswered == true ? 1 : 0);
@@ -129,7 +132,7 @@ public class FlashCardRepo : IFlashCardStorage
             cmd.Parameters.AddWithValue("@a", cardToUpdate.Answer);
             cmd.Parameters.AddWithValue("@id", cardToUpdate.Id);
 
-            SqlDataReader reader = cmd.ExecuteReader();
+            using SqlDataReader reader = cmd.ExecuteReader();
             if(reader.HasRows)
             {
                 reader.Read();
