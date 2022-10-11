@@ -73,7 +73,6 @@ SELECT Id, Name, Nickname, Level, TrainerName, TrainerBadgeNumber, Types, Color 
 
 
 --Many to Many Relationship
-
 -- shared info between same pokemons
 Create Table Pokemon (
     Name NVARCHAR(100) not null,
@@ -143,11 +142,11 @@ Create Table PokemonTypes (
 -- Create new rows in a table
 INSERT INTO Types (Name) VALUES ('Electric'), ('Ground'), ('Flying'), ('Water');
 
--- Update existing rows in a table
-UPDATE Types SET StrongAgainst = 'Flying', WeakAgainst = 'Ground' WHERE Name = 'Electric';
-
 -- Read rows from tables
 SELECT * FROM Types 
+
+-- Update existing rows in a table
+UPDATE Types SET StrongAgainst = 'Flying', WeakAgainst = 'Ground' WHERE Name = 'Electric';
 
 -- Delete rows from a table
 DELETE FROM Types WHERE Name = 'Water';
