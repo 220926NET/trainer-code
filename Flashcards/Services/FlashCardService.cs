@@ -40,9 +40,9 @@ public partial class FlashCardService
         }
     }
 
-    //ToDo: Actually get this working with DB
     public void ChangeCorrectness(bool IsCorrect, FlashCard cardToUpdate)
     {
         cardToUpdate.CorrectlyAnswered = IsCorrect;
+        _repo.UpdateCard(cardToUpdate);
     }
 }
