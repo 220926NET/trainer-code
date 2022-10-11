@@ -63,8 +63,8 @@ public class DBRepo : IFlashCardStorage
         }
         catch(SqlException ex)
         {
-            Console.WriteLine("Something went wrong while trying to access db...");
             //great opportunity to log to logger
+            throw;
         }
         finally
         {

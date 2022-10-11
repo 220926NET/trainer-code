@@ -23,6 +23,7 @@ Other Features:
 
 using Services;
 using DataAccess;
+using Microsoft.Data.SqlClient;
 
 while(true)
 {
@@ -45,7 +46,16 @@ while(true)
             string showOnlyIncorrect = Console.ReadLine()!.Trim().ToLower();
             bool onlyIncorrect = showOnlyIncorrect == "y";
             bool randomized = random == "y";
-            ReviewCards(new FlashCardService(new DBRepo()).GetAllCards(randomized, onlyIncorrect));
+
+            try
+            {
+                ReviewCards(new FlashCardService(new DBRepo()).GetAllCards(randomized, onlyIncorrect));
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("Something went wrong while trying to access db...");
+                Console.WriteLine(ex.Message);
+            }
 
             break;
         case "x":
@@ -60,18 +70,20 @@ while(true)
 
 static void ReviewCards(List<FlashCard> cards)
 {
-    Console.WriteLine(cards[0]);
-    foreach(FlashCard card in cards) {
-        Console.WriteLine(card.Question);
-        Console.WriteLine("Press Enter to reveal answer");
-        Console.ReadLine();
-        Console.WriteLine(card.Answer);
-        Console.WriteLine("Did you get it right? [y/N]");
+    if(cards?.Count > 0)
+    {
+        foreach(FlashCard card in cards) {
+            Console.WriteLine(card.Question);
+            Console.WriteLine("Press Enter to reveal answer");
+            Console.ReadLine();
+            Console.WriteLine(card.Answer);
+            Console.WriteLine("Did you get it right? [y/N]");
 
-        string input = Console.ReadLine()!.Trim().ToLower();
-        
-        if(input.Length > 0 && input[0] == 'y') new FlashCardService(new DBRepo()).ChangeCorrectness(true, card);
-        else new FlashCardService(new DBRepo()).ChangeCorrectness(false, card);
+            string input = Console.ReadLine()!.Trim().ToLower();
+            
+            if(input.Length > 0 && input[0] == 'y') new FlashCardService(new DBRepo()).ChangeCorrectness(true, card);
+            else new FlashCardService(new DBRepo()).ChangeCorrectness(false, card);
+        }
     }
 }
 

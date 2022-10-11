@@ -1,5 +1,6 @@
 ﻿using Models;
 using DataAccess;
+using Microsoft.Data.SqlClient;
 
 namespace Services;
 public partial class FlashCardService
@@ -22,14 +23,21 @@ public partial class FlashCardService
     /// <returns></returns>
     public List<FlashCard> GetAllCards(bool randomOrder, bool onlyIncorrect)
     {
-        List<FlashCard> allCards = _repo.GetAllCards();
-        if(onlyIncorrect) {
-            allCards = allCards.Where(card => card.CorrectlyAnswered == false).ToList();
+        try
+        {
+            List<FlashCard> allCards = _repo.GetAllCards();
+            if(onlyIncorrect) {
+                allCards = allCards.Where(card => card.CorrectlyAnswered == false).ToList();
+            }
+            if(randomOrder) {
+                allCards = allCards.OrderBy(a => new Random().Next()).ToList();
+            }
+            return allCards;
         }
-        if(randomOrder) {
-            allCards = allCards.OrderBy(a => new Random().Next()).ToList();
+        catch(SqlException ex)
+        {
+            throw;
         }
-        return allCards;
     }
 
     //ToDo: Actually get this working with DB
