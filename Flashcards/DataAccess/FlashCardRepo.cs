@@ -8,11 +8,11 @@ ADO.NET : Which is a collection of classes and tools to interact with variety of
 */
 public class FlashCardRepo : IFlashCardStorage
 {
-    private SqlConnection _connection;
+    private SqlConnectionFactory _factory;
 
 
-    public FlashCardRepo(SqlConnection connection) {
-        _connection = connection;
+    public FlashCardRepo(SqlConnectionFactory factory) {
+        _factory = factory
     }
     public FlashCard CreateCard(FlashCard cardToCreate)
     {
@@ -29,13 +29,14 @@ public class FlashCardRepo : IFlashCardStorage
 
         try
         {
-            _connection.Open();
+            using SqlConnection conn = _factory.GetConnection();
+            conn.Open();
 
             //very dangerous code, do not do this
             // SqlCommand cmd = new SqlCommand($"INSERT INTO FlashCards (Question, Answer) VALUES ('{cardToCreate.Question}', '{cardToCreate.Answer}')", connection);
 
             //preventing against sql injection
-            using SqlCommand cmd = new SqlCommand("INSERT INTO FlashCards (Question, Answer) OUTPUT INSERTED.Id VALUES (@question, @answer);", _connection);
+            using SqlCommand cmd = new SqlCommand("INSERT INTO FlashCards (Question, Answer) OUTPUT INSERTED.Id VALUES (@question, @answer);", conn);
             cmd.Parameters.AddWithValue("@question", cardToCreate.Question);
             cmd.Parameters.AddWithValue("@answer", cardToCreate.Answer);
 
@@ -45,10 +46,6 @@ public class FlashCardRepo : IFlashCardStorage
         catch(SqlException)
         {
             throw;
-        }
-        finally
-        {
-            _connection.Close();
         }
 
         return cardToCreate;
@@ -73,9 +70,10 @@ public class FlashCardRepo : IFlashCardStorage
 
         try
         {
-            _connection.Open();
+            using SqlConnection conn = _factory.GetConnection();
+            conn.Open();
 
-            using SqlCommand command = new SqlCommand("SELECT * FROM FlashCards;", _connection);
+            using SqlCommand command = new SqlCommand("SELECT * FROM FlashCards;", conn);
 
             using SqlDataReader reader = command.ExecuteReader();
             
@@ -108,7 +106,7 @@ public class FlashCardRepo : IFlashCardStorage
         }
         finally
         {
-            _connection.Close();
+            conn.Close();
         }
 
         return cards;
@@ -119,11 +117,13 @@ public class FlashCardRepo : IFlashCardStorage
         FlashCard card = new();
         try
         {
+            using SqlConnection conn = _factory.GetConnection();
+
             //open the connection
-            _connection.Open();
+            conn.Open();
 
             //assemble the sql statement
-            using SqlCommand cmd = new SqlCommand("UPDATE FlashCards SET WasCorrect = @isCorrect, Question = @q, Answer = @a WHERE Id = @id; SELECT * FROM FlashCards WHERE Id = @id", _connection);
+            using SqlCommand cmd = new SqlCommand("UPDATE FlashCards SET WasCorrect = @isCorrect, Question = @q, Answer = @a WHERE Id = @id; SELECT * FROM FlashCards WHERE Id = @id", conn);
 
             //add all parameters, we can update either wasCorrect, Question, Answer of a card with this statement
             SqlParameter param = new SqlParameter("@isCorrect", cardToUpdate.CorrectlyAnswered == true ? 1 : 0);
@@ -148,10 +148,6 @@ public class FlashCardRepo : IFlashCardStorage
         catch(SqlException)
         {
             throw;
-        }
-        finally
-        {
-            _connection.Close();
         }
 
         return card;

@@ -26,10 +26,10 @@ using DataAccess;
 using UI;
 using Microsoft.Data.SqlClient;
 
+//Dependency Injection chain
 SqlConnectionFactory factory = new SqlConnectionFactory();
-SqlConnection connection = factory.GetConnection();
 
-FlashCardRepo repo = new FlashCardRepo(connection);
+FlashCardRepo repo = new FlashCardRepo(factory);
 
 FlashCardService service = new FlashCardService(repo);
 
