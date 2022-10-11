@@ -32,6 +32,7 @@ public partial class FlashCardService
         return allCards;
     }
 
+    //ToDo: Actually get this working with DB
     public void ChangeCorrectness(bool IsCorrect, FlashCard cardToUpdate)
     {
         cardToUpdate.CorrectlyAnswered = IsCorrect;

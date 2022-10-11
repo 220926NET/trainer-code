@@ -8,6 +8,8 @@ ADO.NET : Which is a collection of classes and tools to interact with variety of
 */
 public class DBRepo : IFlashCardStorage
 {
+    private SqlConnection connection = new SqlConnection("Server=tcp:220926net.database.windows.net,1433;Initial Catalog=FlashcardsDB;Persist Security Info=False;User ID=flashcard-admin;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+
     public void CreateCard(FlashCard cardToCreate)
     {
         throw new NotImplementedException();
@@ -28,36 +30,52 @@ public class DBRepo : IFlashCardStorage
         6. Close the connection
         7. Return the result to the caller
         */
-        SqlConnection connection = new SqlConnection("Server=tcp:220926net.database.windows.net,1433;Initial Catalog=FlashcardsDB;Persist Security Info=False;User ID=flashcard-admin;Password=P@ssw0rd;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
-        connection.Open();
-
-        SqlCommand command = new SqlCommand("SELECT * FROM FlashCards;", connection);
-
-        SqlDataReader reader = command.ExecuteReader();
-        
-        if(reader.HasRows)
+        try
         {
-            while(reader.Read()) 
+            connection.Open();
+
+            SqlCommand command = new SqlCommand("SELECT * FROM FlashCards;", connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+            
+            if(reader.HasRows)
             {
-                int id = (int) reader["Id"];
-                string q = (string) reader["Question"];
-                string a = (string) reader["Answer"];
-                bool wasCorrect = (bool) reader["WasCorrect"];
+                while(reader.Read()) 
+                {
+                    int id = (int) reader["Id"];
+                    string q = (string) reader["Question"];
+                    string a = (string) reader["Answer"];
+                    bool wasCorrect = (bool) reader["WasCorrect"];
 
-                FlashCard card = new FlashCard {
-                    Id = id,
-                    Question = q,
-                    Answer = a,
-                    CorrectlyAnswered = wasCorrect
-                };
+                    FlashCard card = new FlashCard {
+                        Id = id,
+                        Question = q,
+                        Answer = a,
+                        CorrectlyAnswered = wasCorrect
+                    };
 
-                cards.Add(card);
+                    cards.Add(card);
+                }
             }
+
+
+        }
+        catch(SqlException ex)
+        {
+            Console.WriteLine("Something went wrong while trying to access db...");
+            //great opportunity to log to logger
+        }
+        finally
+        {
+            connection.Close();
         }
 
-        connection.Close();
-
         return cards;
+    }
+
+    public FlashCard UpdateCard(FlashCard cardToUpdate)
+    {
+        throw new NotImplementedException();
     }
 }

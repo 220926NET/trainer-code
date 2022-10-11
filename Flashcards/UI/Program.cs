@@ -45,7 +45,7 @@ while(true)
             string showOnlyIncorrect = Console.ReadLine()!.Trim().ToLower();
             bool onlyIncorrect = showOnlyIncorrect == "y";
             bool randomized = random == "y";
-            ReviewCards(new FlashCardService(new FileStorage()).GetAllCards(randomized, onlyIncorrect));
+            ReviewCards(new FlashCardService(new DBRepo()).GetAllCards(randomized, onlyIncorrect));
 
             break;
         case "x":
@@ -70,8 +70,8 @@ static void ReviewCards(List<FlashCard> cards)
 
         string input = Console.ReadLine()!.Trim().ToLower();
         
-        if(input.Length > 0 && input[0] == 'y') new FlashCardService(new FileStorage()).ChangeCorrectness(true, card);
-        else new FlashCardService(new FileStorage()).ChangeCorrectness(false, card);
+        if(input.Length > 0 && input[0] == 'y') new FlashCardService(new DBRepo()).ChangeCorrectness(true, card);
+        else new FlashCardService(new DBRepo()).ChangeCorrectness(false, card);
     }
 }
 
@@ -87,7 +87,7 @@ static void AddCard()
         try
         {
             FlashCard cardToAdd = new FlashCard(question, answer);
-            new FlashCardService(new FileStorage()).AddNewCard(cardToAdd);
+            new FlashCardService(new DBRepo()).AddNewCard(cardToAdd);
             return;
         }
         catch(ArgumentException ex)
