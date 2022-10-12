@@ -54,3 +54,12 @@ SELECT TOP 1 earnings, COUNT(earnings) FROM (SELECT months * salary AS earnings 
     SET @MTE = (SELECT Max(Salary * Months) FROM Employee);
     SELECT @MTE, COUNT(Name) FROM Employee WHERE (months * salary) = @MTE;
     ```
+
+## Practice Ideas
+
+### SQL Island (more guided)
+- [Link](https://sql-island.informatik.uni-kl.de/)
+- Click the menu icon on top left corner and click the fourth button from the top to change language to English
+
+### SQL Murder Mystery (more free form)
+- [Link](https://mystery.knightlab.com/)
