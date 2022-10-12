@@ -12,7 +12,7 @@ public class FlashCardRepo : IFlashCardStorage
 
 
     public FlashCardRepo(SqlConnectionFactory factory) {
-        _factory = factory
+        _factory = factory;
     }
     public FlashCard CreateCard(FlashCard cardToCreate)
     {
