@@ -27,3 +27,4 @@ public class Repository<T>
  - It provides a central "dbContext"(which is sort of like a work queue) between multiple repositories, where different repositories can add their work to be performed (insert, update, delete, etc.). Once they call "save changes/update" on dbContext, that particular object will ensure that the work is being completed as whole
  - Some Links
     - https://www.c-sharpcorner.com/UploadFile/b1df45/unit-of-work-in-repository-pattern/
+    - https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
