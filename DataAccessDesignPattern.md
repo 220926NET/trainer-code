@@ -24,6 +24,6 @@ public class Repository<T>
 
 ## Unit of Work Pattern
  - Repository + Transaction
- - It provides a central "dbContext"(which is sort of like a work queue) between multiple repositories, where different repositories can "add" their work to be performs (insert, update, delete, etc.). Once they call "save changes/update" on dbContext, that particular object will ensure that the work is being completed as whole
+ - It provides a central "dbContext"(which is sort of like a work queue) between multiple repositories, where different repositories can add their work to be performed (insert, update, delete, etc.). Once they call "save changes/update" on dbContext, that particular object will ensure that the work is being completed as whole
  - Some Links
     - https://www.c-sharpcorner.com/UploadFile/b1df45/unit-of-work-in-repository-pattern/
