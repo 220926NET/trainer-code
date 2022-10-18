@@ -2,9 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiDemo1.Controllers;
 
+// The controller is the entrypoint of your .NET API
 [ApiController]
 [Route("[controller]")] // "https://www.localhost:4778/weatherforecast/register"
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController : ControllerBase // COntrollerbase is the API base class
 {
     // an array of weather descriptions.
     private static readonly string[] Summaries = new[]
@@ -36,16 +37,30 @@ public class WeatherForecastController : ControllerBase
 
     // build a new POST action method that will send back what you send it.
     [HttpPost("mynumdoubled/{myint}")]
-    public ActionResult<int> sendbacknum(int myint)
+    public ActionResult<int> sendbacknum(int myint = -1)
     {
         //call a business layer method that will do the business logic on the data.
         if (myint < 5)
         {
-            return Created("marks/created/thing", myint * 2);
+            return Created($"{myint}/marks/created/thing", myint * 2);
         }
         else
         {
-            return Unauthorized(new { mark = "markisthe instructor", age = 43 });
+            return Unauthorized(new { mark = "mark is the instructor", age = 43 });
+        }
+    }
+
+
+    [HttpGet("mystring/{mystring}")]
+    public ActionResult<int> sendbacknum1(string mystring = "")
+    {
+        if (mystring == "q")
+        {
+            return Ok(10);
+        }
+        else
+        {
+            return Unauthorized(new { mark = $"{mystring} is the instructor", age = 43 });
         }
     }
 }
