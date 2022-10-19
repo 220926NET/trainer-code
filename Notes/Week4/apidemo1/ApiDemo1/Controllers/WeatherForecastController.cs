@@ -1,4 +1,6 @@
+using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
+using ModelsLayer;
 
 namespace ApiDemo1.Controllers;
 
@@ -15,11 +17,12 @@ public class WeatherForecastController : ControllerBase // COntrollerbase is the
 
     //built in logger.
     private readonly ILogger<WeatherForecastController> _logger;
-
+    private readonly Class1 _class1;
     // class constructor
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, Class1 c1)
     {
         _logger = logger;
+        _class1 = c1;
     }
 
     //the one method in thew api right now.
@@ -62,5 +65,16 @@ public class WeatherForecastController : ControllerBase // COntrollerbase is the
         {
             return Unauthorized(new { mark = $"{mystring} is the instructor", age = 43 });
         }
+    }
+
+    [HttpPost("new")]
+    public ActionResult<WeatherForecast> PostNewForecast(WeatherForecast w)
+    {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem("in controller got an error!");
+        }
+        w.Summary = "You can't get the weather!";
+        return Ok(w);
     }
 }
