@@ -104,10 +104,6 @@ public class FlashCardRepo : IFlashCardStorage
             //great opportunity to log to logger
             throw;
         }
-        finally
-        {
-            conn.Close();
-        }
 
         return cards;
     }
