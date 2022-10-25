@@ -9,7 +9,12 @@ public class Program
         WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
+        //Transient (services collection will generate new instance of the class everytime you call it)
+        //Scoped (dep injector will create an instance of a class per request)
+        //Singleton (one single instance will be shared in the lifetime of the application)
+        builder.Services.AddScoped<IFlashCardRepo, FlashCardRepo>();
+        builder.Services.AddScoped<FlashCardServices>();
+        
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();

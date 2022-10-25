@@ -7,7 +7,7 @@ namespace ApiDemo1.Controllers;
 // The controller is the entrypoint of your .NET API
 [ApiController]
 [Route("[controller]")] // "https://www.localhost:4778/weatherforecast/register"
-public class WeatherForecastController : ControllerBase // COntrollerbase is the API base class
+public class WeatherForecastController : ControllerBase // Controllerbase is the API base class
 {
     // an array of weather descriptions.
     private static readonly string[] Summaries = new[]
@@ -26,6 +26,7 @@ public class WeatherForecastController : ControllerBase // COntrollerbase is the
     }
 
     //the one method in thew api right now.
+    //http://localhost:5000/weatherforecast/GetWeatherForecast
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
@@ -39,6 +40,7 @@ public class WeatherForecastController : ControllerBase // COntrollerbase is the
     }
 
     // build a new POST action method that will send back what you send it.
+    // weatherforecast/mynumdoubled/2?anotherInt=3&
     [HttpPost("mynumdoubled/{myint}")]
     public ActionResult<int> sendbacknum(int myint = -1)
     {
