@@ -17,9 +17,12 @@
             #sub-title {
                 font-size: 40px;
             }
+            .cat-img {
+                max-width: 200pt;
+            }
         </style>
     </head>
-    <body id="main-body">
+    <body id="main-body" onclick="sayHi()">
         <!-- This is where you'll actually put the content of website in -->
         <!-- HTML provides different levels of heading, from 1 through 6, 1 is the biggest, and 6 is the smallest -->
         <h1 id="main-heading">Hello, world!</h1> 
@@ -36,6 +39,8 @@
         <h3 id="section-title">Heading 3</h3>
         <!-- semantic elements that describes the purpose of the element in the page -->
         <article></article>
-        <img src="https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg" alt="A polydactyl tabby cat on an orange rug">
+        <img class="cat-img" src="https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg" alt="A polydactyl tabby cat on an orange rug">
+        <button class="btn btn-outline-warning" onclick="printEventInfo(event)">Say Hi</button>
+        <script src="index.js"></script>
     </body>
 </html>
