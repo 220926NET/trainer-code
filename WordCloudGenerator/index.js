@@ -1,10 +1,4 @@
 function processText() {
-    function getAPIKey() {
-        fetch('apiKey.txt')
-        .then(response => response.text())
-        .then(text => apiKey = text);
-    }
-
     let text = document.getElementById('word-cloud-text')?.value;
     if(text) {
         //let's send an http request to our api
@@ -13,7 +7,6 @@ function processText() {
         .then(response => response.text())
         .then(key => {
             fetch(wordCloudAPI, {
-                // mode: 'no-cors',
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

@@ -21,7 +21,7 @@ ES2015 ES6
 
 ## Comparison
 - == : type coerces
-- === : strict comparison
+- === : strict comparison (compares not only the values, but also the type)
 
 ## Scopes
 - global scope (in browsers, window)
@@ -56,7 +56,7 @@ Once the event reaches the target element, it "bubbles" up to the window. As it 
 - XML Http Request
 - Fetch API
 
-## JS Object vs JSON
+## JS Object vs JSON (JavaScript Object Notation)
 JSON is a notation to transport data derived from JS objects.
 JSON is more strict in formatting than js objects:
 - the keys must be string and use double quotes
@@ -98,8 +98,10 @@ you can also change the context using .call(), .apply(), .bind() methods
 ## Hoisting
 JS keeps a lexical environment (a phone book for all variable/function names) that it creates during "compilation" stage (before it runs the code). Depending on how you declare your variable/functions, different things get hoisted.
 - Function Declaration: both the function name and the definition gets hoisted (aka registered in lexical environment) which means, you can use this function before the declaration line appears
+    `function iamAFunction() {}`
 - var keyword: only the variable name is hoisted, the actual content is not initialized until it reaches the initialization step. If you try to use it earlier than the declaration, you will get undefined
+    `var foo = 'bar';`
 - let: it is still being hoisted, but the program will prevent you from using the variable before initialization step.
+    `let bar = 'foo';`
 
-
-- To prevent all of this.... just please declare and initialize your variables/functions before you use them.
+- To prevent any additional headaches, declare and initialize your variables/functions before you use them.

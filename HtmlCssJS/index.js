@@ -11,6 +11,10 @@
 // //execute this block
 // }
 
+buttonClickHandler(); //this works, calling a function before the declaration
+// greet(); //this doesn't work //will throw reference error
+// sayHi(); //basically i'm trying to execute undefined, null reference.
+
 function buttonClickHandler(/*any parameter goes in here*/ ) {
     console.log('hello!');
 }
@@ -19,7 +23,7 @@ let greet = function(name) {
     console.log(`hello ${name}!`); //"hello 'name'!"
 }
 
-let sayHi = () => {
+var sayHi = () => {
     console.log('hi!');
 }
 
