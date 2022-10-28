@@ -1,0 +1,17 @@
+/* An external style sheet */
+
+/* Tag selector, selecting body element */
+body {
+    background-color: magenta;
+}
+
+/* Id selector */
+#main-body {
+    background-color: cornflowerblue;
+}
+
+/* class selector */
+.article-class {
+    /* This background color of a child element is overriding the parent element's background color */
+    background-color: cornsilk;
+}

@@ -4,7 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 Secrets.cs
 coveragereport
-Alexander-Soudry-Project-1/
+apiKey.txt
+
 # User-specific files
 *.rsuser
 *.suo
