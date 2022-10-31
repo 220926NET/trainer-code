@@ -9,7 +9,7 @@ Have great app ideas? Sell it to your colleagues and have them join you in reali
 4. I'll form teams factoring in everyone's preference and their strengths.
 
 
-# P2 Specs
+# P2 Specs - Due 11/15 (Tuesday)
 [[Technology Project (P2)]]
 ## Overview
 For the technology project, you'll create a full stack web application utilizing the technologies we've learned so far.
