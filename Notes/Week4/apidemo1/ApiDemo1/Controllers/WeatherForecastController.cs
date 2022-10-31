@@ -6,7 +6,7 @@ namespace ApiDemo1.Controllers;
 
 // The controller is the entrypoint of your .NET API
 [ApiController]
-[Route("[controller]")] // "https://www.localhost:4778/weatherforecast/register"
+[Route("[controller]")] // "https://www.localhost:4778/weatherforecast"
 public class WeatherForecastController : ControllerBase // Controllerbase is the API base class
 {
     // an array of weather descriptions.

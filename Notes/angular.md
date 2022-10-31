@@ -62,3 +62,37 @@ They all start with @ symbol
 - @NgModule (to let angular know that this is angular's module)
 - @Component (this is angular's component)
 - These decorators, contain angular specific configuration
+
+## Directive
+We use directives to bring programmatic functionality to html. For example, *ngIf/else, *ngSwitch, *ngFor, *ngClass are all examples of directive.
+Two different categories of directive
+- Structural Directive : changes the structure of your html page
+    - ex. *ngIf, *ngFor, *ngSwitch
+
+- Attribute Directive : changes attributes of your html tags
+    - ex. *ngClass, *ngStyle, *ngModel
+
+    
+## Model Binding
+- One Way Binding
+    - Event Binding
+        - goes from HTML to TS
+        - syntax: `(<event-name>)`
+        - `(click)="clickEventHandler()"`
+        - `(dblclick)`
+    - Attribute Binding
+        - TS to HTML
+        - syntax: `[attr-name]`
+        - ex. `[class]=variableNameInComponentTS`
+    - String Interpolation
+        - TS to HTML
+        - syntax: `{{varName}}`
+
+- Two Way Binding
+    - both the view (html file) and the logic (the ts file) are dynamically updating each other
+    - Syntax: `[(modelName)]` 'banana box'
+    - very commonly used in template-based forms `[(ngModel)]`
+
+
+## Lifecycle hooks
+In each angular component's life time (from initial render to destruction), there are many different events or stages it goes through. As developers, we can subscribe to those events using lifecycle hooks to do something whenever those events are triggered. For example, if you want to do some DOM manipulation once the component renders, you can put that logic in ngOnInit function, or if you want to clean up some resources when angular destroys the component, do so on ngOnDestroy. ngDoCheck is particularly useful if you're relying heavily on an external library that angular is not aware of. 

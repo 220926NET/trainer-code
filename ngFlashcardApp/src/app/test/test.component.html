@@ -3,7 +3,12 @@
 <button (click)="methods()">Click Me</button>
 <!-- Event binding in angular -->
 <button (mouseover)="methods()">Hover Me</button>
-<button (dblclick)="service.greet()">Invoking Service Method</button>
 <!-- Property Binding in angular -->
 <p [id]="customIdValue">Property Binding Example</p>
-{{service.publicProperty}}
+<button (click)="getData()">Get Weather Forecast</button>
+
+<!-- (structural) directive -->
+<div *ngFor="let forecast of data" id="data-container">
+    <!-- pipe -->
+    <p>{{forecast | json}}</p>
+</div>
