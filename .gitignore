@@ -5,6 +5,7 @@
 Secrets.cs
 coveragereport
 apiKey.txt
+
 # User-specific files
 *.rsuser
 *.suo
