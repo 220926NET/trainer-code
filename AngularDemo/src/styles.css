@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.form-error {
+    color: #fe0000ba;
+}
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.bg {
+    background-image: url('assets/login_bg.png');
+    background-size: cover;
+}

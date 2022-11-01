@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Deposit Pokemon</h1>
+<div mat-dialog-content>
+    <p>
+        Please enter details about the pokemon you wish to deposit!
+    </p>
+    <div class="col-9">
+        <form [formGroup]="pokemonForm">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="form-control" formControlName="name">
+            <label for="nickName">NickName:</label>
+            <input type="text" name="nickName" id="nickName" class="form-control" formControlName="nickName">
+            <label for="level">Level:</label>
+            <input type="number" name="level" id="level" class="form-control" formControlName="level">
+            <label for="type">Type:</label>
+            <input type="text" name="type" id="type" class="form-control" formControlName="type">
+            <label for="disposition">Disposition:</label>
+            <input type="text" name="disposition" id="disposition" class="form-control" formControlName="disposition">
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onClick('yes')" cdkFocusInitial>Submit</button>
+    <button mat-raised-button color="warn" (click)="onClick('no')">Cancel</button>
+</div>

@@ -1,0 +1,24 @@
+<header>
+    <app-navbar></app-navbar>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-3 m-2">
+            <app-profile (pokeCreated)="updatePokemon()" current-user="currentUser"></app-profile>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 m-2" *ngFor="let poke of pokemons">
+            <mat-card class="poke-card">
+                <mat-card-title>{{poke.name}}</mat-card-title>
+                <mat-card-subtitle *ngIf="poke.nickName">{{poke.nickName}}</mat-card-subtitle>
+                <mat-card-content>
+                    <div>Level: {{poke.level}}</div>
+                    <div>Type: {{poke.type}}</div>
+                    <div *ngIf="poke.disposition">Disposition: {{poke.disposition}}</div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button (click)="withdraw(poke.id)" mat-button>Withdraw</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
