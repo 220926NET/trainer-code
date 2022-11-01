@@ -1,0 +1,7 @@
+.flashcard {
+    max-width: 300pt;
+    border : solid darkgray 3pt;
+    margin-bottom: 10pt;
+    padding : 5pt;
+    border-radius: 5pt;
+}

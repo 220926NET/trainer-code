@@ -8,7 +8,8 @@
 <button (click)="getData()">Get Weather Forecast</button>
 
 <!-- (structural) directive -->
-<div *ngFor="let forecast of data" id="data-container">
+<div *ngFor="let card of data" id="data-container">
     <!-- pipe -->
-    <p>{{forecast | json}}</p>
+    <p>{{card | json}}</p>
 </div>
+<p>{{ currentDate | date }}</p>

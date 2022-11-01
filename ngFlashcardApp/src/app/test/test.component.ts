@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TestService } from '../test.service';
-
+import { CardsAPIService } from '../cards-api.service';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -8,7 +8,7 @@ import { TestService } from '../test.service';
 })
 export class TestComponent implements OnInit, OnDestroy {
 
-  constructor(public service : TestService) {
+  constructor(public service : CardsAPIService) {
 
   }
 
@@ -19,9 +19,9 @@ export class TestComponent implements OnInit, OnDestroy {
   customIdValue : string = "property-binding-id";
   
   data : any[] = [];
-
+  currentDate : Date = new Date();
   getData() : void {
-    this.service.getWeatherForecast().subscribe((data) => {
+    this.service.getAllCards().subscribe((data) => {
       this.data = data;
     })
   }
@@ -29,7 +29,7 @@ export class TestComponent implements OnInit, OnDestroy {
   // Will run once the component loads
   //really great place to do any initial data loading
   ngOnInit(): void {
-    this.service.getWeatherForecast().subscribe((data) => {
+    this.service.getAllCards().subscribe((data) => {
       this.data = data;
     })
   }

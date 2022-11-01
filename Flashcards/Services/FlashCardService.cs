@@ -40,9 +40,8 @@ public partial class FlashCardService
         }
     }
 
-    public void ChangeCorrectness(bool IsCorrect, FlashCard cardToUpdate)
+    public void UpdateCard(FlashCard cardToUpdate)
     {
-        cardToUpdate.CorrectlyAnswered = IsCorrect;
         _repo.UpdateCard(cardToUpdate);
     }
 }

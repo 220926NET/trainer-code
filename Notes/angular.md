@@ -46,7 +46,7 @@ Angular a frontend framework that allows us to create single page applications
 
 ## Module
 - Angular module is like a namespace in C#
-- These contain different angular resources/segments, such as components and services
+- These contain different angular resources, such as components and services
 
 ## Component
 - They are smallest unit of reusable views with its own style, logic, and testing files
@@ -64,7 +64,7 @@ They all start with @ symbol
 - These decorators, contain angular specific configuration
 
 ## Directive
-We use directives to bring programmatic functionality to html. For example, *ngIf/else, *ngSwitch, *ngFor, *ngClass are all examples of directive.
+We use directives to bring programmatic functionality to html. *ngIf/else, *ngSwitch, *ngFor, *ngClass are all examples of directives.
 Two different categories of directive
 - Structural Directive : changes the structure of your html page
     - ex. *ngIf, *ngFor, *ngSwitch
@@ -96,3 +96,10 @@ Two different categories of directive
 
 ## Lifecycle hooks
 In each angular component's life time (from initial render to destruction), there are many different events or stages it goes through. As developers, we can subscribe to those events using lifecycle hooks to do something whenever those events are triggered. For example, if you want to do some DOM manipulation once the component renders, you can put that logic in ngOnInit function, or if you want to clean up some resources when angular destroys the component, do so on ngOnDestroy. ngDoCheck is particularly useful if you're relying heavily on an external library that angular is not aware of. 
+
+## Pipes
+https://angular.io/guide/pipes
+- json
+- async
+- date
+- upper/lower, etc.
