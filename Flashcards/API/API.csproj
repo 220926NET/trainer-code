@@ -11,12 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
-    <ProjectReference Include="..\ModelsLayer\ModelsLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\PublishProfiles\" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

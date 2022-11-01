@@ -1,0 +1,32 @@
+.login-component {
+    display: flex;
+    justify-content: center;
+}
+
+.login-box {
+    margin-top: 25vh;
+    max-width: 300px;
+    padding:40px 40px 10px 40px;
+    background-color: rgb(250,250,250);
+    border: solid lightgray 1px;
+    border-radius: 2%;
+}
+
+.login-btn {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.welcome-text {
+    text-align: center;
+}
+
+.switch-btn {
+    color: #0d6efd;
+}
+
+.switch-btn:hover {
+    cursor: pointer;
+    color: #0b5ed7;
+    text-decoration: underline;
+}

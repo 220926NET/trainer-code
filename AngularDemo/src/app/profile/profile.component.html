@@ -1,0 +1,9 @@
+<div class="profile-card">
+    <img class="profile-img" src="https://images-na.ssl-images-amazon.com/images/I/71WkWKFRSWL.png" alt="pokemon with question mark">
+    <div *ngIf="currentUser">
+        <h3>{{currentUser.name}}</h3>
+        <div>Badges: {{currentUser.numBadges}}</div>
+        <div>Money : {{currentUser.money}}</div>
+    </div>
+    <button mat-stroked-button color="primary" (click)="depositPokemon()">Deposit Pokemon</button>
+</div>

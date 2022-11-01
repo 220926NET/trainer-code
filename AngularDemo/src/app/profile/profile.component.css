@@ -1,0 +1,12 @@
+.profile-img {
+    width: 100%;
+    max-width: 150px;
+}
+
+.profile-card {
+    overflow-wrap: anywhere;
+    padding: 10px;
+    border-radius: 2%;
+    background-color: var(--bs-gray-100);
+    text-align: center;
+}

@@ -1,0 +1,23 @@
+<div class="container">
+    <button class="btn btn-outline-primary" (click)="moveCard(-1)" [disabled]="currentCardIndex == 0">Previous</button>
+    <button class="btn btn-outline-primary" (click)="moveCard(1)" [disabled]="currentCardIndex == cards.length - 1">Next</button>
+    <div *ngFor="let card of cards; let i = index">
+        <div *ngIf="i == currentCardIndex" class="flashcard" (click) = "showAnswer = !showAnswer">
+            <div *ngIf="showAnswer; then answer; else question"></div>
+            <ng-template #question>
+                <div>
+                    {{i}}
+                </div>
+                <div >
+                    {{card.question}}
+                </div>
+            </ng-template>
+            <ng-template #answer>
+                <div>
+                    {{card.answer}}
+                </div>
+            </ng-template>        
+        </div>
+    </div>
+
+</div>

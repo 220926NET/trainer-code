@@ -1,0 +1,15 @@
+<!-- String interpolation -->
+{{property}}
+<button (click)="methods()">Click Me</button>
+<!-- Event binding in angular -->
+<button (mouseover)="methods()">Hover Me</button>
+<!-- Property Binding in angular -->
+<p [id]="customIdValue">Property Binding Example</p>
+<button (click)="getData()">Get Weather Forecast</button>
+
+<!-- (structural) directive -->
+<div *ngFor="let card of data" id="data-container">
+    <!-- pipe -->
+    <p>{{card | json}}</p>
+</div>
+<p>{{ currentDate | date }}</p>
