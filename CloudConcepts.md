@@ -5,8 +5,8 @@ Go through the [Azure Fundamentals: Describe cloud concepts Learning Path](https
 - What are benefits of cloud computing?
 - Tell me about different types of scaling (vertical vs horizontal)
 - What's the difference between public and private cloud?
-- What is PaaS? When would you use that? What's an example of PaaS?
 - What is IaaS? When would you use that? What's an example of IaaS?
+- What is PaaS? When would you use that? What's an example of PaaS?
 - What is SaaS? When would you use that? What's an example of SaaS?
 
 ### Bonus Questions
@@ -14,7 +14,7 @@ Go through the [Azure Fundamentals: Describe cloud concepts Learning Path](https
 - Which certifications do they offer?
 
 # DevOps
-Use google and answer the following question in your own words
+Use google(or your favorite search engine) and answer the following question in your own words
 
 - What is DevOps? What problem is it solving?
 - Why is it so popular?
