@@ -25,6 +25,7 @@ export class AddCardComponent {
       answer : this.cardForm.controls['answer'].value,
       correctlyAnswered : false
     }).subscribe((res) => {
+      console.log(res);
       this.cardForm.reset();
       this.cardAdded.emit();
     })
