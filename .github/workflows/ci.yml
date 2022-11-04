@@ -78,5 +78,5 @@ jobs:
       shell: powershell
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"220926NET_trainer-code" /o:"220926net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        <insert_your_clean_build_command>
+        dotnet build --no-restore ${{env.WORKING_DIRECTORY}}
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
