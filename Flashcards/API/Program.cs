@@ -5,7 +5,7 @@ using Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<SqlConnectionFactory>();
+builder.Services.AddScoped<SqlConnectionFactory>(ctx => new SqlConnectionFactory(builder.Configuration.GetConnectionString("flashcardDB")));
 builder.Services.AddScoped<IFlashCardStorage, FlashCardRepo>();
 builder.Services.AddScoped<FlashCardService>();
 builder.Services.AddControllers();

@@ -39,7 +39,11 @@ Angular a frontend framework that allows us to create single page applications
     - `ng g s name`
 - to create a module
     - `ng g m module-name`
-
+    
+- to test
+    - `ng test`
+- to test with code coverage
+    - `ng test --code-coverage`
 ## Angular Build process
 - Webpack Bundling
 - Minification

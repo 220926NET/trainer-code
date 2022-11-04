@@ -5,6 +5,7 @@
 Secrets.cs
 coveragereport
 apiKey.txt
+appsettings.Development.json
 
 # User-specific files
 *.rsuser

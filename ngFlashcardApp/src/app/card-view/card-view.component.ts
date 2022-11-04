@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CardsAPIService } from '../cards-api.service';
+import { Component } from '@angular/core';
 import { FlashCard } from 'src/models/flashcard';
 import { Input } from '@angular/core';
 @Component({
@@ -7,9 +6,9 @@ import { Input } from '@angular/core';
   templateUrl: './card-view.component.html',
   styleUrls: ['./card-view.component.css']
 })
-export class CardViewComponent implements OnInit {
+export class CardViewComponent {
 
-  constructor(private cardsApi : CardsAPIService) { }
+  constructor() { }
   @Input() cards : FlashCard[] = [];
   currentCardIndex : number = 2;
   showAnswer : boolean = false;
@@ -18,9 +17,4 @@ export class CardViewComponent implements OnInit {
     this.currentCardIndex += n;
     this.showAnswer = false;
   }
-  
-  ngOnInit(): void {
-
-  }
-
 }
