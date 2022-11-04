@@ -12,6 +12,10 @@ on:
     # this allows me to manually trigger this workflow
   workflow_dispatch:
 
+# way to create environment variables
+env:
+  WORKING_DIRECTORY : Flashcards
+
 # Jobs are the step by step instruction to your runner/VM on what to do
 jobs:
 # Name of this job
@@ -35,11 +39,11 @@ jobs:
     # equivalent to doing npm install
     - name: Restore dependencies
       run: |
-        cd Flashcards
+        cd ${{env.WORKING_DIRECTORY}}
         dotnet restore
     # equivalent to you doing dotnet build
     - name: Build
-      run: dotnet build --no-restore Flashcards
+      run: dotnet build --no-restore ${{env.WORKING_DIRECTORY}}
     # running dotnet test
     - name: Test
-      run: dotnet test --no-build --verbosity normal Flashcards
+      run: dotnet test --no-build --verbosity normal ${{env.WORKING_DIRECTORY}}
