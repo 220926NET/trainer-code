@@ -1,0 +1,43 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+# these are events that triggers this workflow/pipeline
+on:
+  push:
+    branches: [ "main", "six-angular" ]
+  pull_request:
+    branches: [ "main" ]
+    # this allows me to manually trigger this workflow
+  workflow_dispatch:
+
+# Jobs are the step by step instruction to your runner/VM on what to do
+jobs:
+# Name of this job
+  build:
+
+# Which OS should this run on
+    runs-on: ubuntu-latest
+
+# The actual instruction you give the machine to execute
+    steps:
+    # download your source code- equivalent to your git clone command
+    - uses: actions/checkout@v3
+    
+    # download .NET SDK to your runner
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    # equivalent to doing dotnet restore in your commandline
+    # dotnet restore will download all your dependencies and make sure all your project references are correctly configured
+    # equivalent to doing npm install
+    - name: Restore dependencies
+      run: dotnet restore
+    # equivalent to you doing dotnet build
+    - name: Build
+      run: dotnet build --no-restore
+    # running dotnet test
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
