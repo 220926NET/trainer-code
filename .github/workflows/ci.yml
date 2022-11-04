@@ -34,7 +34,9 @@ jobs:
     # dotnet restore will download all your dependencies and make sure all your project references are correctly configured
     # equivalent to doing npm install
     - name: Restore dependencies
-      run: dotnet restore
+      run: |
+        cd Flashcards
+        dotnet restore
     # equivalent to you doing dotnet build
     - name: Build
       run: dotnet build --no-restore
