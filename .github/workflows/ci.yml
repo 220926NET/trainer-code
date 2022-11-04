@@ -39,7 +39,7 @@ jobs:
         dotnet restore
     # equivalent to you doing dotnet build
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore Flashcards
     # running dotnet test
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal Flashcards
