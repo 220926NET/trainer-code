@@ -1,0 +1,32 @@
+# this is a dockerfile
+# this file provides instructions for docker engine to be able to generate an image (a file system containing your application)
+
+# The From Clause defines which Image we'll be building our own image off of (no need to keep reinventing the wheel)
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
+# Setting up work directory in the image
+# Any subsequent copy, add, run, etc. call will be done from this directory
+WORKDIR /app
+
+# Copying over all our source code
+COPY FlashcardApp.sln /app/
+COPY API API
+COPY DataAccess DataAccess
+COPY Models Models
+COPY Services Services
+COPY Tests Tests
+
+# Run a command during docker build stage
+RUN dotnet publish -o ./publish
+
+# Multi-stage build, to reduce final image size
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS run
+# when we run this image in a container, execute this command/executable
+# so.. we do dotnet run
+
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+# Command to execute when we run this image in a container
+ENTRYPOINT [ "dotnet", "API.dll"]
