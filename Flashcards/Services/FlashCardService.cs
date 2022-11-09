@@ -34,7 +34,7 @@ public partial class FlashCardService
             }
             return allCards;
         }
-        catch(SqlException ex)
+        catch(SqlException)
         {
             throw;
         }
