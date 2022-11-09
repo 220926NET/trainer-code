@@ -18,9 +18,9 @@ jobs:
       - name: install angular
         run: npm install -g @angular/cli
       - name: install dependencies
-        run: npm install
+        run: cd ngFlashcardApp && npm install
       - name: test
-        run: ng test --no-watch --code-coverage
+        run: cd ngFlashcardApp && ng test --no-watch --code-coverage
       - uses: SonarSource/sonarqube-scan-action@v1.1.0
         env: 
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
