@@ -20,11 +20,11 @@ jobs:
         env: 
           SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
           SONAR_HOST_URL : https://sonarcloud.io
-        with:
+#         with:
         # Additional arguments to the sonar-scanner
 #           args: # optional
           # Set the sonar.projectBaseDir analysis property
-          projectBaseDir: ./ngFlashcardApp
+#           projectBaseDir: ./ngFlashcardApp
 
 #   build_and_deploy_job:
 #     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
