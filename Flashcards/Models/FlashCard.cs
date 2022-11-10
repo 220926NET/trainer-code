@@ -61,6 +61,8 @@ public class FlashCard
 
     public bool CorrectlyAnswered { get; set; } = false;
 
+    public string Category { get; set; } = "";
+    
     public override string ToString()
     {
         return $"{Question}: {Answer}";
