@@ -17,6 +17,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//We're going to be caching some data in memory
+builder.Services.AddMemoryCache();
+
 var app = builder.Build();
 
 // This is my middleware pipeline
