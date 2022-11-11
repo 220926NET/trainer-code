@@ -58,9 +58,11 @@ namespace API.Controllers
             List<FlashCard> allCards = new();
             //after you've added the card in the db,
             //you can update the cache (if it exists) to reflect the addition
-            _cache.TryGetValue("allCards", out allCards);
-            allCards.Add(addedCard);
-            _cache.Set("allCards", allCards, new TimeSpan(0, 0, 20));
+            if(_cache.TryGetValue("allCards", out allCards))
+            {
+                allCards.Add(addedCard);
+                _cache.Set("allCards", allCards, new TimeSpan(0, 0, 20));
+            }
 
             return addedCard;
         }
