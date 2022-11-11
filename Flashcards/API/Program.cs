@@ -19,13 +19,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// This is my middleware pipeline
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+// These are my middleware, they execute the order that you list here
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
