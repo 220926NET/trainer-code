@@ -20,7 +20,7 @@ This is the step where you call on the function itself
 - Factorial:
     - n! = n * (n-1)!, where 1! = 1
 - Fibonacci Numbers: 
-    - f_n+2 = f_n+1 + f_n , where f_0 = 1, f_1 = 1
+    - f_n+2 = f_n+1 + f_n , where f_0 = 0, f_1 = 1
 - Multiplication:
     - 5 * 3 = 5 + 5 + 5
             = 5 + (5 * 2)
