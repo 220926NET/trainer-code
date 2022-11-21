@@ -3,14 +3,14 @@ is a way of solving a problem by breaking it down into smaller problems
 
 ## Base Case
 is the smallest problem that will not recurse
-
+```
 5! =  5 * 4 * 3 * 2  *1
 5! = 5 * 4!
     = 5 * 4 * (3!)
     = 5 * 4 * 3 * 2!
     = 5 * 4 * 3 * 2 * 1!
     = 5 * 4 * 3 * 2 * 1
-
+```
 In this factorial example, 1 is our base case
 
 ## Recurrence Relation / Recursive Structure
