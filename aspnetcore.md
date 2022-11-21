@@ -33,8 +33,29 @@ BUT they execute inside the controller context
 You use filters by including them as attributes above your controller class
 [Filter Tutorial](https://jakeydocs.readthedocs.io/en/latest/mvc/controllers/filters.html)
 
-## Caching
+## Model Binding
+- using System.ComponentModel.DataAnnotations you can have ASP.NET validate your models before it executes controller actions
+- It will automatically send back 400 whenever the data fails any of the validation rule
+- [doc](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0)
+
+## (In Memory) Response Caching in Back End
+- This has to do with the REST's Cacheable (guiding) principle.
+- We can cache some commonly requested data in memory, so we don't have to retrieve it from the DB EVERY SINGLE TIME
+
+- Pros:
+    - Big performance boost 
+    - certain queries are big, so storing this in memory can speed the response up quite a bit
+    - If we get asked for that resource A LOT, then this makes sense
+- Cons:
+    - If the resource changes, then we need to update it
+    - We are using memory to store this data, which is a scarce resource
+[Caching Guideline](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-6.0#cache-guidelines)
+
+- Cacheable means (in this context) server can _save_ certain stateless data in its memory to reuse  
+- Stateless means that the server should not store _client's_ information in the server (any information that can change depending on clients)
 
 ## OpenAPI
-
-## Model Binding
+- This is a specification/initiative to standardize API documentation
+- Swagger is part of OpenAPI
+- TLDR; devs hate documenting but API is all about documenting, so let's make it easy
+- [OpenAPI](https://www.openapis.org/)
