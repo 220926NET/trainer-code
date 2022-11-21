@@ -10,9 +10,9 @@ public partial class FlashCardService
     {
         _repo = repo;
     }
-    public void AddNewCard(FlashCard card)
+    public FlashCard AddNewCard(FlashCard card)
     {
-        _repo.CreateCard(card);
+        return _repo.CreateCard(card);
     }
 
     /// <summary>
