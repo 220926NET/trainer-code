@@ -1,8 +1,8 @@
 # Recursion
-is a way of solving a problem by breaking down a smaller problem
+is a way of solving a problem by breaking it down into smaller problems
 
 ## Base Case
-is a smallest problem that will not recurse
+is the smallest problem that will not recurse
 
 5! =  5 * 4 * 3 * 2  *1
 5! = 5 * 4!
@@ -14,14 +14,14 @@ is a smallest problem that will not recurse
 In this factorial example, 1 is our base case
 
 ## Recurrence Relation / Recursive Structure
-This is the step where you call on the function itself to recurse
+This is the step where you call on the function itself
 
 ## Problems we can solve with recursion
 - Factorial:
-    - n! = n * (n-1)! 1! = 1
-- Fibonacci Sequence: 
-    - f_n+2 = f_n+1 + f_n where f_0 = 1, f_1 = 1
-- Multiplication
+    - n! = n * (n-1)!, where 1! = 1
+- Fibonacci Numbers: 
+    - f_n+2 = f_n+1 + f_n , where f_0 = 1, f_1 = 1
+- Multiplication:
     - 5 * 3 = 5 + 5 + 5
             = 5 + (5 * 2)
     - n * m = n + (n * (m - 1))
@@ -51,8 +51,8 @@ public class Program
 		RussianDoll outerDoll = new RussianDoll();
 		outerDoll.InnerDoll = new RussianDoll();
 		outerDoll.InnerDoll.InnerDoll = new RussianDoll();
-//		outerDoll.InnerDoll.InnerDoll.InnerDoll = new RussianDoll();
-//		outerDoll.InnerDoll.InnerDoll.InnerDoll.InnerDoll = new RussianDoll();
+		outerDoll.InnerDoll.InnerDoll.InnerDoll = new RussianDoll();
+		outerDoll.InnerDoll.InnerDoll.InnerDoll.InnerDoll = new RussianDoll();
 
 		
 		Console.WriteLine(CountRussianDolls(outerDoll));
