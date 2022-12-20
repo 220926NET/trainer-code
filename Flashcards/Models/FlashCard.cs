@@ -12,6 +12,7 @@ public class FlashCard
         Answer = a;
     }
 
+    //automatic property
     public int Id { get; set; }
 
     // //properties

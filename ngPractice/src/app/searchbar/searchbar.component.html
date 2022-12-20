@@ -1,0 +1,6 @@
+<p>searchbar works!</p>
+<input type="text" #input>
+<button (click)="searchSubmit(input)">Search</button>
+<div *ngFor="let book of result">
+    <app-book-card [key]="book.key" [title]="book.title"></app-book-card>
+</div>
